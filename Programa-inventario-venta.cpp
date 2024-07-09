@@ -58,6 +58,22 @@ void registrarProducto(Producto articulo[], int &cantidadProductos){
 	 
 }
 
+void listarProductos(Producto articulo[], int cantidadProductos){
+	if(cantidadProductos == 0){
+		cout<<"No se han registrado productos hasta el momento. \n";
+	}
+	else{
+		cout<<"LISTANDO PRODUCTOS...\n"<<endl;	
+ 	   for(int i=0; i<cantidadProductos; ++i){
+ 	   	cout<<"Producto: "<<i+1<<" | "<<" -> "<<"INDICE: "<<i<<endl; 
+ 		cout<<"Nombre del producto: "<<articulo[i].nombre<<endl;
+ 		cout<<"Precio: "<<articulo[i].precio<<endl;
+		cout<<"\n";
+		 
+ 	   }
+	}
+}
+
     
 int main(){
 	Producto articulo[limite_productos];
@@ -66,18 +82,18 @@ int main(){
    	int cantidadProductos = 0; 
       
       do{
-      	cout<<"\n"; 
+		    cout<<"\n"; 
 			cout<<"-------------------------------------"<<endl; 
 			cout<<"---------------MENU------------------"<<endl; 
 			cout<<"-------------------------------------"<<endl; 
 			cout<<endl<<"Digite una de las siguientes opciones: "<<endl; 
 			cout<<"[1] Registrar un producto. "<<endl; 
-			cout<<"[2] Mostrar los productos registrados. "<<endl; 
+			cout<<"[2] Listar los productos registrados. "<<endl; 
 			cout<<"[3] Buscar algun producto por su nombre. "<<endl; 
 	  		cout<<"[4] Actualizar los datos de un producto. "<<endl; 
 		   	cout<<"[5] Eliminar un producto. "<<endl;
 		   	cout<<"[6] Registrar una venta. "<<endl; 
-		   	cout<<"[7] Mostrar las ventas realizadas. "<<endl; 
+		   	cout<<"[7] Listar las ventas realizadas. "<<endl; 
 		   	cout<<"[8] Calcular el total de ventas realizadas. "<<endl; 
 		   	cout<<"[9] Salir del programa. ";
 		   	cout<<endl<<"Digite el numero de la opcion: ";
@@ -89,6 +105,7 @@ int main(){
        	         registrarProducto(articulo, cantidadProductos); 
    		      break; 
    		      case 2: 
+	      	     listarProductos(articulo, cantidadProductos); 
    		      break; 
    		      case 3: 
    		      break; 
