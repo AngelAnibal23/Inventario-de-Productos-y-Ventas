@@ -98,12 +98,33 @@ void buscarProducto(Producto articulo[], int cantidadProductos, const string& no
     	        cout<<"\nEl contacto con el nombre '"<<nombre<<"' no fue encontrado.\n";
    		    }
 }
+
+void actualizarProducto(Producto articulo[], int cantidadProductos, int indice){
+	 if(indice<0 || indice>=cantidadProductos){
+	 	cout<<"El indice ingresado no es valido. "; 
+	 	
+		 return;
+	 }
+	 
+          cout<<"\nPREPARANDO PRODUCTO...\n"; 
+          cout<<"Digite el nuevo nombre del producto: ";
+		  cin.ignore();
+		  getline(cin,articulo[indice].nombre); 
+		  cout<<"Ingrese el precio que tendra el producto: "; 
+		  cin>>articulo[indice].precio; 
+		  cout<<"\n"; 
+	
+	cout<<"PRODUCTO ACTUALIZADO SATISFACTORIAMENTE! \n";
+	 
+	 
+}
     
 int main(){
 	Producto articulo[limite_productos];
  	Venta    vent[limite_productos];
   	int opcion; 
    	int cantidadProductos = 0; 
+   	int indice; 
       
       do{
 		    cout<<"\n"; 
@@ -131,7 +152,7 @@ int main(){
    		      case 2: 
 	      	     listarProducto(articulo, cantidadProductos); 
    		      break; 
-   		      case 3: 
+   		      case 3: {
    		         string nombre; 
 	      	     cout<<"\nDigite el nombre del producto a buscar: "; 
 	      	     cin.ignore(); 
@@ -139,9 +160,14 @@ int main(){
 	      	     
        	         buscarProducto(articulo, cantidadProductos, nombre); 
    		      break; 
-   		      /*
-		      case 4: 
+   		      }
+		      case 4:
+		      	 cout<<"Ingrese el indice del producto que se actualizara. ";
+				 cin>>indice; 
+				 
+				 actualizarProducto(articulo, cantidadProductos, indice); 			  	    
    		      break; 
+   		      /*
    		      case 5: 
    		      break; 
    		      case 6: 
@@ -150,27 +176,15 @@ int main(){
    		      break; 
    		      case 8: 
    		      break;
-				 
+			  
    		      case 9:
-				 cout<<"Saliendo del programa..."<<endl; 
-	 		  default: break;
-			   */ 
+   		     */ 	
+				 //cout<<"Saliendo del programa..."<<endl; 
+	 		 // default: break;
+			   
           	}
        }while(opcion != 9);
       
   return 0;
 }
 
-
-/*
-void buscarYEliminarPorNombre(contactoEmail contactos[], int &cantidadContactos, const string& nombre) {
-    for (int i = 0; i < cantidadContactos; ++i) {
-        if (contactos[i].nombrescompletos == nombre) {
-            eliminarContactos(contactos, cantidadContactos, i);
-            return;
-        }
-    }
-    
-}
-
-*/
