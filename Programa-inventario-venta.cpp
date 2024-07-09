@@ -22,6 +22,8 @@ S: Salir del programa.
 
 #include <iostream>
 #include <string>
+#include <string.h>
+
 using namespace std;
 
 const int limite_productos = 50; 
@@ -58,7 +60,7 @@ void registrarProducto(Producto articulo[], int &cantidadProductos){
 	 
 }
 
-void listarProductos(Producto articulo[], int cantidadProductos){
+void listarProducto(Producto articulo[], int cantidadProductos){
 	if(cantidadProductos == 0){
 		cout<<"No se han registrado productos hasta el momento. \n";
 	}
@@ -74,6 +76,28 @@ void listarProductos(Producto articulo[], int cantidadProductos){
 	}
 }
 
+void buscarProducto(Producto articulo[], int cantidadProductos, const string& nombre){ 
+        
+		bool confirmacion = false; 
+        
+        cout<<"BUSCANDO EL PRODUCTO...\n"; 
+	 	for(int i=0; i<cantidadProductos; ++i){
+	 		if(articulo[i].nombre == nombre){
+	 			
+	 			cout<<"Producto: "<<i+1<<" | "<<" -> "<<"INDICE: "<<i<<endl; 
+ 				cout<<"Nombre del producto: "<<articulo[i].nombre<<endl;
+ 				cout<<"Precio: "<<articulo[i].precio<<endl;
+				cout<<"\n";
+				
+				confirmacion = true; 
+				
+		 		break; 
+ 	        }
+         }
+ 	        if (confirmacion == false){
+    	        cout<<"\nEl contacto con el nombre '"<<nombre<<"' no fue encontrado.\n";
+   		    }
+}
     
 int main(){
 	Producto articulo[limite_productos];
@@ -105,11 +129,18 @@ int main(){
        	         registrarProducto(articulo, cantidadProductos); 
    		      break; 
    		      case 2: 
-	      	     listarProductos(articulo, cantidadProductos); 
+	      	     listarProducto(articulo, cantidadProductos); 
    		      break; 
    		      case 3: 
+   		         string nombre; 
+	      	     cout<<"\nDigite el nombre del producto a buscar: "; 
+	      	     cin.ignore(); 
+	      	     getline(cin, nombre); 
+	      	     
+       	         buscarProducto(articulo, cantidadProductos, nombre); 
    		      break; 
-   		      case 4: 
+   		      /*
+		      case 4: 
    		      break; 
    		      case 5: 
    		      break; 
@@ -118,12 +149,28 @@ int main(){
    		      case 7: 
    		      break; 
    		      case 8: 
-   		      break; 
+   		      break;
+				 
    		      case 9:
 				 cout<<"Saliendo del programa..."<<endl; 
-	 		  default: break; 
+	 		  default: break;
+			   */ 
           	}
        }while(opcion != 9);
       
   return 0;
 }
+
+
+/*
+void buscarYEliminarPorNombre(contactoEmail contactos[], int &cantidadContactos, const string& nombre) {
+    for (int i = 0; i < cantidadContactos; ++i) {
+        if (contactos[i].nombrescompletos == nombre) {
+            eliminarContactos(contactos, cantidadContactos, i);
+            return;
+        }
+    }
+    
+}
+
+*/
