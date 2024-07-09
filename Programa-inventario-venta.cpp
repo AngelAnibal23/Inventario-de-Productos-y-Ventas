@@ -118,6 +118,21 @@ void actualizarProducto(Producto articulo[], int cantidadProductos, int indice){
 	 
 	 
 }
+
+void eliminarProducto(Producto articulo[], int &cantidadProductos, int indice){
+     if(indice<0 || indice>=cantidadProductos){
+	 	cout<<"El indice ingresado no es valido. "; 	
+		 return;
+     }
+	 
+	 for(int i=indice; i<cantidadProductos-1; ++i){
+	 	articulo[i]=articulo[i+1]; 
+	 }
+	 
+	 cantidadProductos--; 
+	 
+	 cout<<"\nEL PRODUCTO FUE ELIMINADO SATISFACTORIAMENTE!\n "; 
+}
     
 int main(){
 	Producto articulo[limite_productos];
@@ -167,8 +182,13 @@ int main(){
 				 
 				 actualizarProducto(articulo, cantidadProductos, indice); 			  	    
    		      break; 
-   		      /*
-   		      case 5: 
+   		      case 5:{
+  	  		     cout<<"Ingrese el indice del producto que desea eliminar. ";
+				 cin>>indice; 
+	      	     eliminarProducto(articulo, cantidadProductos, indice); 
+   		      	
+   		      	break;
+   		      } 
    		      break; 
    		      case 6: 
    		      break; 
@@ -177,8 +197,8 @@ int main(){
    		      case 8: 
    		      break;
 			  
-   		      case 9:
-   		     */ 	
+   		      //case 9:
+   		     //*/ 	
 				 //cout<<"Saliendo del programa..."<<endl; 
 	 		 // default: break;
 			   
