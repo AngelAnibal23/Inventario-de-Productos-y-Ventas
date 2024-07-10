@@ -27,6 +27,7 @@ S: Salir del programa.
 using namespace std;
 
 const int limite_productos = 50; 
+const int limite_ventas = 50; 
 
 struct Producto{
   string nombre;
@@ -133,12 +134,48 @@ void eliminarProducto(Producto articulo[], int &cantidadProductos, int indice){
 	 
 	 cout<<"\nEL PRODUCTO FUE ELIMINADO SATISFACTORIAMENTE!\n "; 
 }
+
+void registrarVenta(Venta vent[], Producto articulo[], int cantidadProductos, int &cantidadVentas) {
+    if (cantidadVentas >= limite_ventas) {
+        cout << "Ya no queda espacio suficiente para registrar más ventas.\n";
+        return;
+    }
+
+    Venta venta;
+    cout <<"Ingrese el nombre del producto vendido: ";
+    cin.ignore();
+    getline(cin, venta.producto);
     
+    bool confirmacion = false;
+    for (int i = 0; i < cantidadProductos; ++i) {
+        if (articulo[i].nombre == venta.producto) {
+            confirmacion = true;
+            venta.precioTotal = articulo[i].precio;
+            break;
+        }
+    }
+
+    if (confirmacion = false) {
+        cout << "El producto no existe. No se puede registrar la venta.\n";
+        return;
+    }
+
+    cout << "Ingrese la cantidad vendida: ";
+    cin >> venta.cantidad;
+    venta.precioTotal *= venta.cantidad;
+    venta.idVenta = cantidadVentas + 1;
+
+    vent[cantidadVentas] = venta;
+    cantidadVentas++;
+
+    cout << "VENTA REGISTRADA SATISFACTORIAMENTE!\n";
+}
+   
 int main(){
 	Producto articulo[limite_productos];
- 	Venta    vent[limite_productos];
+ 	Venta    vent[limite_ventas];
   	int opcion; 
-   	int cantidadProductos = 0; 
+   	int cantidadProductos = 0, cantidadVentas = 0; 
    	int indice; 
       
       do{
@@ -189,9 +226,10 @@ int main(){
    		      	
    		      	break;
    		      } 
-   		      break; 
-   		      case 6: 
-   		      break; 
+   		      case 6: {
+   		      	 registrarVenta(vent, articulo, cantidadProductos, cantidadVentas); 
+   		      	break;
+   		      }
    		      case 7: 
    		      break; 
    		      case 8: 
