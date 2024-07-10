@@ -187,6 +187,14 @@ void listarVentas(Venta vent[], int cantidadVentas){
 		}
 	}
 } 
+
+void totalVentas(Venta vent[], int cantidadVentas){
+	float total=0; 
+	for(int i=0; i<cantidadVentas; ++i){
+		total=total+vent[i].precioTotal;
+	}
+	cout<<"El total de ventas realizadas es: "<<total<<endl; 
+}
    
 int main(){
 	Producto articulo[limite_productos];
@@ -248,18 +256,20 @@ int main(){
    		      	break;
    		      }
    		      case 7:{
-   		      	 listarVentas(vent, cantidadVentas) ; 
-   		      	
+   		      	 listarVentas(vent, cantidadVentas); 
    		      	break;
    		      } 
    		      
    		      case 8: 
+   		         totalVentas(vent, cantidadVentas); 
    		      break;
 			  
-   		      //case 9:
-   		     //*/ 	
-				 //cout<<"Saliendo del programa..."<<endl; 
-	 		 // default: break;
+      		  case 9:{
+      		  	 cout<<"Saliendo del programa..."<<endl; 
+      		  	break;
+      		  }
+    	       
+	 		  default: break;
 			   
           	}
        }while(opcion != 9);
